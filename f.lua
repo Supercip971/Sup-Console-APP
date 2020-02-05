@@ -29,9 +29,37 @@ function run()
     elseif(isArg("up")) then 
         setFilePath(dirTop(getFilePath()))
     elseif(isArg("l")) then
-        
+        if(isArg("folder")) then 
+            log ("folder list\n", "null")
+            log ("\n", "null")
+            for i=0,fileNumber(getFilePath())-1,1 do 
+                if(fileSize(fileList(getFilePath(), i)) == -1) then
+                    log ((fileList(getFilePath(), i)), "null")
+                    setConsoleCurPos(20,-1)
+                    log (("  |   ".. "size: ".. fileSize(fileList(getFilePath(), i))).."\n","null")
+                end
+            end
+        else if(isArg("folder") ) then 
+            log ("file list\n", "null")
+            log ("\n", "null")
+            for i=0,fileNumber(getFilePath())-1,1 do 
+                if(fileSize(fileList(getFilePath(), i)) > 0) then
+                    log ((fileList(getFilePath(), i)), "null")
+                    setConsoleCurPos(20,-1)
+                    log (("  |   ".. "size: ".. fileSize(fileList(getFilePath(), i))).."\n","null")
+                end
+            end
+    
+        else
+            log ("file and folder list\n", "null")
+            log ("\n", "null")
+            for i=0,fileNumber(getFilePath())-1,1 do 
 
- for dir in io.popen("dir "..getFilePathIS().. " /b /ad"):lines() do print(dir) end
-        
+                log ((fileList(getFilePath(), i)), "null")
+                setConsoleCurPos(20,-1)
+                log (("  |   ".. "size: ".. fileSize(fileList(getFilePath(), i))).."\n","null")
+            end
+        end
+    end
     end
 end
